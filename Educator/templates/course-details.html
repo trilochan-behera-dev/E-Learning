@@ -1,0 +1,154 @@
+{% load static %}
+{% load custom_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Educator || Trilochan Behera</title>
+<!-- 
+  <link rel="shortcut icon" href=" {% static 'assets/img/logo.png' %}" type="image/x-icon"> -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href=" {% static 'css/bootstrap.css' %} " rel="stylesheet">
+  <link href=" {% static 'css/icofont/icofont.css' %}  " rel="stylesheet">
+  <link href=" {% static 'css/style.css' %} " rel="stylesheet">
+  
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo mr-auto"><a href="/">Educator</a></h1>
+      {% if user.is_authenticated %}
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="/courses">Courses</a></li>
+          <li><a href="/my_courses">My Courses</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+      
+     <span class="kanha ml-5"> Hello, {{user.username}} </span>  <a href="/logout" class="get-started-btn">Sign Out</a>
+      {% else %}
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="/courses">Courses</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+      <a href="/login" class="get-started-btn">Sign In</a>
+      {% endif %}
+    </div>
+  </header><!-- End Header -->
+ 
+ 
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs" data-aos="fade-in">
+      <div class="container">
+        <h2>{{course}}</h2>
+        
+      </div>
+    </div><!-- End Breadcrumbs -->
+    <!-- ======= Cource Details Section ======= -->
+    <section id="course-details" class="course-details">
+        <div class="container" data-aos="fade-up">
+          
+          <div class="row">
+            <div class="col-lg-8 col-md-7">
+              <iframe id="player" width="100%" height="315" src="https://www.youtube.com/embed/{{video.video_id}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <h3>{{course.course_name}}</h3>
+              <p> Course Duration is :
+                {{course.course_length}} Hours
+              </p>
+              <p> Click Here :
+                <a href="http://localhost:8000/Educate/Project_Images/{{course.resource}}" download>  
+                 <font color="red">Download the resource for {{course.course_name}} course.</font>
+               </a> 
+               </p>
+              <p>
+                {{course.description}}
+              </p>
+            </div>
+            <div class="col-lg-4 col-md-5"> 
+              {% is_enrolled request course as enrolled %}
+              {% for videoz in videos %}
+              <div class="course-info p-1 m-1">
+                {% if videoz == video %}
+                <p class="text-center" style="background-color:#ffc107"><a href="?lecture={{videoz.serial_number}}" >{{videoz.title}}</a></p>
+                {% else %}
+                <p class="text-center"><a  href="?lecture={{videoz.serial_number}}" {% if not enrolled and not videoz.is_preview  %} class="no_preview"  data-toggle="tooltip" title="You Have to Enroll before watching this Video "  {% endif %}>{{videoz.title}}</a></p>
+                {% endif %}
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+  
+        </div>
+      </section><!-- End Cource Details Section -->
+
+    </main><!-- End #main -->
+
+
+
+
+<footer id="footer">
+    <table width="100%" height="20" >
+      <tr>
+      </tr>
+      <tr bgcolor="151B54">
+          <td><font color="yellow" size="4"><i><marquee behavior="alternate">Designed & Developed By:</font><font color="white"> Trilochan Behera</font></marquee></i></font></td>
+      </tr>
+    </table>
+
+</footer><!-- End Footer -->
+
+  
+  
+
+  <script>
+    var player;
+    // window.onload =()=>{
+    //   player = document.getElementById('player')
+    //   maintainRatio()
+    // }
+
+    document.onreadystatechange = function(){
+      if(document.readyState == 'interactive'){
+        player = document.getElementById('player')
+       maintainRatio()
+      }
+    }
+    
+    function maintainRatio(){
+        var w = player.clientWidth
+        var h = (w*9)/16
+        player.height = h
+    }
+    windows.onresize = maintainRatio()
+
+  </script>
+
+  <script>
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+  });
+  </script>
+   <a href="#" class="back-to-top"><i class="fa fa-arrow-up"></i></a>
+  
+   <!--  JS Files -->
+   <script src="{% static 'js/jquery.min.js' %} "></script>
+   <script src="{% static 'js/jquery.easing.min.js' %} "></script>
+   <script src="{% static 'js/counterup.min.js' %} "></script>
+   <script src="{% static 'js/jquery.waypoints.min.js' %} "></script>
+   <!-- Template Main JS File -->
+   <script src="{% static 'js/main.js' %}"></script>
+ 
+ </body>
+ 
+ </html>

@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Educator || Trilochan Behera</title>
+<!-- 
+  <link rel="shortcut icon" href=" {% static 'assets/img/logo.png' %}" type="image/x-icon"> -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href=" {% static 'css/bootstrap.css' %} " rel="stylesheet">
+  <link href=" {% static 'css/icofont/icofont.css' %}  " rel="stylesheet">
+  <link href=" {% static 'css/style.css' %} " rel="stylesheet">
+  
+</head>
+
+<body>
+    
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo mr-auto"><a href="/">Educator</a></h1>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="/">Home</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+      <a href="/login" class="get-started-btn">Sign In</a>
+
+    </div>
+  </header><!-- End Header -->
+  <!-- Registration form -->
+  <section style="background: linear-gradient(to top,#ffc8da82,#a0cbc7);padding:5px 0 5px 0;height:85vh">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+            <div class="card" style="border-radius: 15px;">
+              <div class="card-body p-4">
+                <h2 class="text-uppercase text-center mb-5" style="font-family: 'Times New Roman', Times, serif;font-weight: 600;color:darkcyan">Create an Account</h2>
+  
+                <form action="" method="POST">
+                  {% csrf_token %}
+  
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="form3Example1cg">Your Full Name</label>
+                    <input type="text" name="name" class="form-control" required />
+                  </div>
+
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="form3Example2cg">Your Username</label>
+                    <input type="text" name="username" class="form-control" required />
+                  </div>
+
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="form3Example3cg">Your Email</label>
+                    <input type="email" name="email" class="form-control" required /> 
+                  </div>
+  
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="form3Example4cg">Password</label>
+                    <input type="password" name="password" class="form-control" required />
+                  </div>
+  
+                  <div class="form-outline mb-2">
+                    <label class="form-label" for="form3Example4cdg">Confirm your password</label>
+                    <input type="password" name="cpassword" class="form-control" required />
+                  </div>
+  
+                  <div class="form-check d-flex justify-content-center mb-1">
+                    <p class="text-center text-muted mt-1 mb-0">Have already an account ? <a href="/login" class="fw-bold text-body"><font color="red">Login here</font></a></p>
+                  </div>
+                  {% for message in messages %}
+                  <div class="form-check d-flex justify-content-center mb-1">
+                    <p class="text-center text-muted mt-1 mb-0"><font color="red">{{message}}</font></a></p>
+                  </div>
+                  {% endfor %}
+                  
+                  <div>
+                    <input type="submit" class="btn btn-success btn-block btn-lg  text-body" value="Register Now" >
+                  </div>
+  
+                  
+                </form>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--End Registration form -->
+
+<footer id="footer">
+    <table width="100%" height="20" >
+      <tr>
+      </tr>
+      <tr bgcolor="151B54">
+          <td><font color="yellow" size="4"><i><marquee behavior="alternate">Designed & Developed By:</font><font color="white"> Trilochan Behera</font></marquee></i></font></td>
+      </tr>
+    </table>
+
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-arrow-up"></i></a>
+  
+  <!--  JS Files -->
+  <script src="{% static 'js/jquery.min.js' %} "></script>
+  <script src="{% static 'js/jquery.easing.min.js' %} "></script>
+  <script src="{% static 'js/counterup.min.js' %} "></script>
+  <script src="{% static 'js/jquery.waypoints.min.js' %} "></script>
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

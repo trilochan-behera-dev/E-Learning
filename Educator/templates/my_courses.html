@@ -1,0 +1,102 @@
+{% load static %}
+{% load custom_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Educator || Trilochan Behera</title>
+<!-- 
+  <link rel="shortcut icon" href=" {% static 'assets/img/logo.png' %}" type="image/x-icon"> -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href=" {% static 'css/bootstrap.css' %} " rel="stylesheet">
+  <link href=" {% static 'css/icofont/icofont.css' %}  " rel="stylesheet">
+  <link href=" {% static 'css/style.css' %} " rel="stylesheet">
+  
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo mr-auto"><a href="/">Educator</a></h1>
+      {% if user.is_authenticated %}
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="/courses">Courses</a></li>
+          <li><a href="/my_courses">My Courses</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+      
+     <span class="kanha ml-5"> Hello, {{user.username}} </span>  <a href="/logout" class="get-started-btn">Sign Out</a>
+      {% endif %}
+    </div>
+  </header><!-- End Header -->
+ 
+ 
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs" data-aos="fade-in">
+      <div class="container">
+        <h2>My Courses</h2>
+        
+      </div>
+    </div><!-- End Breadcrumbs -->
+    <!-- ======= Popular Courses Section ======= -->
+    <section id="courses" class="courses">
+        <div class="container" data-aos="fade-up">
+  
+
+          <div class="row" data-aos="zoom-in" data-aos-delay="100">
+            {% for uc in user_course %}
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+              <div class="course-item">
+                <img src="{{uc.course.course_image.url}}" class="img-fluid"  >
+                <div class="course-content">
+                  <h3>{{uc.course.course_name}}</h3>
+                  <p style="height:120px;overflow-y: scroll;">{{uc.course.description}}</p>
+                  <hr>
+                <center> <a href="../course-details/{{uc.course.slug}}" class="btn btn-success btn-block" > <font color='#fff'> Start Course </font></a> </center> 
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            <!-- End Course Item-->
+          </div>
+        </div>
+      </section><!-- End Popular Courses Section -->
+
+    </main><!-- End #main -->
+
+
+
+
+<footer id="footer">
+    <table width="100%" height="20" >
+      <tr>
+      </tr>
+      <tr bgcolor="151B54">
+          <td><font color="yellow" size="4"><i><marquee behavior="alternate">Designed & Developed By:</font><font color="white"> Trilochan Behera</font></marquee></i></font></td>
+      </tr>
+    </table>
+
+</footer><!-- End Footer -->
+
+<a href="#" class="back-to-top"><i class="fa fa-arrow-up"></i></a>
+  
+<!--  JS Files -->
+<script src="{% static 'js/jquery.min.js' %} "></script>
+<script src="{% static 'js/jquery.easing.min.js' %} "></script>
+<script src="{% static 'js/counterup.min.js' %} "></script>
+<script src="{% static 'js/jquery.waypoints.min.js' %} "></script>
+<!-- Template Main JS File -->
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

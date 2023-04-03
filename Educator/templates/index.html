@@ -1,0 +1,303 @@
+{% load static %}
+{% load custom_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Educator || Trilochan Behera</title>
+<!-- 
+  <link rel="shortcut icon" href=" {% static 'img/logo.png' %}" type="image/x-icon"> -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href=" {% static 'css/bootstrap.css' %} " rel="stylesheet">
+  <link href=" {% static 'css/icofont/icofont.css' %}  " rel="stylesheet">
+  <link href=" {% static 'css/style.css' %} " rel="stylesheet">
+  
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo mr-auto"><a href="/">Educator</a></h1>
+      {% if user.is_authenticated %}
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="my_courses">My Courses</a></li>
+          <!-- <li><a href="#trainers">Trainers</a></li> -->
+          <!-- <li><a href="#pricing">Pricing</a></li> -->
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+      
+     <span class="kanha ml-5"> Hello, {{user.username}} </span>  <a href="logout" class="get-started-btn">Sign Out</a>
+      {% else %}
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <!-- <li><a href="#trainers">Trainers</a></li> -->
+          <!-- <li><a href="#pricing">Pricing</a></li> -->
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+      <a href="login" class="get-started-btn">Sign In</a>
+      {% endif %}
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex justify-content-center align-items-center">
+    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Educate <i class="fa fa-graduation-cap"></i> <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Yourself</h1>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>About</h2>
+          <p>About Us</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+            <img src="{% static 'img/about.png'%}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+            <h3>We are team of talented designers making Responsive websites using HTML5, CSS3, Bootstrap,JQuery,Javascript,Python,Django.</h3>
+            <ul>
+              <li><i class="icofont-check-circled"></i> Quality and Responsive Website Development.</li>
+              <li><i class="icofont-check-circled"></i> We offer flexible websolutions with an emphasis on collaboration and long-term commitment.</li>
+              <li><i class="icofont-check-circled"></i> We aim to providew the highest quality of services.</li>
+              <li><i class="icofont-check-circled"></i> We solve Tech Problems With 100% solutions.</li>
+              <li><i class="icofont-check-circled"></i> Our Dedicated Team Develop Projects With Great Efforts.</li>
+              <li><i class="icofont-check-circled"></i> We help our clients succeed by creating brand identities, digital experiences and print materials that communicate clearly, achieve marketing goals, and look fantastic.</li>            
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts section-bg">
+      <div class="container">
+
+        <div class="row counters">
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">1232</span>
+            <p>Students</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">12</span>
+            <p>Courses</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">42</span>
+            <p>Events</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">12</span>
+            <p>Trainers</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+
+    <!-- ======= Popular Courses Section ======= -->
+    <section id="courses" class="courses">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Courses</h2>
+          <p>Popular Courses</p>
+        </div>
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          {% for courses in course %}
+          {% if forloop.counter < 4 %} 
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="course-item">
+              <img src="{{courses.course_image.url}}" class="img-fluid" id="course" >
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4> <del> {{courses.price|rupee}} </del> &nbsp;&nbsp;&nbsp;&nbsp; {% Price_After_discount  courses.price courses.discount as value %}{{value |rupee}} </h4>
+                  <p class="price">Save  {{courses.discount}}%</p>
+                </div>
+
+                <h3>{{courses.course_name}}</h3>
+                <p style="height:120px;overflow-y: scroll;">{{courses.description}}</p>
+                <hr>
+                {% is_enrolled request courses as enroll%}
+                <div class="row">
+                  {% if enroll %}
+                  <div class="col-6"><button class="btn btn-success btn-block"><font color="#fff">Enrolled <i class="fa fa-check-circle"></i></font></button></div>
+                  <div class="col-6"><a href="course-details/{{courses.slug}}" class="btn btn-warning btn-block"> <font color='#fff'> Start Course</font></a></div>
+                  {% else %}
+                  <div class="col-6"><a href="check-out/{{courses.slug}}" class="btn btn-danger btn-block"> <font color='#fff'> Enroll Now </font></a></div>
+                  <div class="col-6"><a href="course-details/{{courses.slug}}" class="btn btn-info btn-block"> <font color='#fff'> More Info </font></a></div>
+                  {% endif %}
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+          <!-- End Course Item-->
+        </div>
+      </div>
+     <center> <a href="courses" class="btn btn-dark text-center mt-3"> <font color='#fff'> More Courses </font></a></center>
+    </section><!-- End Popular Courses Section -->
+   
+   
+    {% for trainers in trainer %}
+    <!-- ======= Trainers Section ======= -->
+    <section id="trainers" class="trainers">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Trainers</h2>
+          <p>Our Professional Trainers</p>
+        </div>
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              <img src="{{trainers.trainer_image.url}}" class="img-fluid" alt="">
+              <div class="member-content">
+                <h4>{{trainers.trainer_name}}</h4>
+                <span>{{trainers.trainer_course}}</span>
+                <div class="social">
+                  <a href=""><i class="icofont-twitter"></i></a>
+                  <a href=""><i class="icofont-facebook"></i></a>
+                  <a href=""><i class="icofont-instagram"></i></a>
+                  <a href=""><i class="icofont-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+
+      </div>
+    </section><!-- End Trainers Section -->
+    {% endfor %}
+
+  </main><!-- End #main -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div id="contact" class="breadcrumbs" data-aos="fade-in">
+      <div class="container">
+        <h2>Contact Us</h2>
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Contact Section ======= -->
+    <section  class="contact">
+      
+      <div class="container" data-aos="fade-up">
+
+        <div class="row mt-5">
+
+          <div class="col-lg-4">
+            <div class="info">
+              <div class="address">
+                <i class="icofont-google-map"></i>
+                <h4>Location:</h4>
+                <p>Jagatsinghpur,Odisha</p>
+              </div>
+
+              <div class="email">
+              <a href="mailto:trilochanbeherak@gmail.com">  <i class="icofont-envelope"></i>
+                <h4>Email:</h4>
+                <p>trilochanbeherak@gmail.com</p></a>
+              </div>
+
+              <div class="phone">
+            <a href="tel:9583998665">   <i class="icofont-phone"></i>
+                <h4>Call:</h4>
+                <p>+91-9583998665</p></a> 
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-8 mt-5 mt-lg-0">
+
+            <form action="" method="POST" role="form" class="php-email-form">
+              {% csrf_token %}
+              <div class="form-row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="fname" class="form-control"  placeholder="Your First Name" required />
+                </div>
+                <div class="col-md-6 form-group">
+                  <input type="text" class="form-control" name="lname"  placeholder="Your Last Name" required />
+                </div>
+                <div class="col-md-6 form-group">
+                  <input type="text" name="mobile" class="form-control" id="mobile" placeholder="Your Mobile Number" required />
+                </div>
+                <div class="col-md-6 form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required/>
+                </div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write Your Subject" placeholder="Message"></textarea>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <table width="100%" height="20" >
+      <tr>
+      </tr>
+      <tr bgcolor="151B54">
+          <td><font color="yellow" size="4"><i><marquee behavior="alternate">Designed & Developed By:</font><font color="white"> Trilochan Behera</font></marquee></i></font></td>
+      </tr>
+      </table>
+
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-arrow-up"></i></a>
+  
+  <!--  JS Files -->
+  <script src="{% static 'js/jquery.min.js' %} "></script>
+  <script src="{% static 'js/jquery.easing.min.js' %} "></script>
+  <script src="{% static 'js/counterup.min.js' %} "></script>
+  <script src="{% static 'js/jquery.waypoints.min.js' %} "></script>
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
