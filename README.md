@@ -21,5 +21,5 @@ Welcome to the E-Learning Online Learning Portal project! This platform facilita
 ## How to Run Locally 🛠️
 
 Clone the repository to your local machine.
-   ```bash
-   git clone https://github.com/trilochan-behera-dev/E-Learning.git
+ ```bash
+ git clone https://github.com/trilochan-behera-dev/E-Learning.git
